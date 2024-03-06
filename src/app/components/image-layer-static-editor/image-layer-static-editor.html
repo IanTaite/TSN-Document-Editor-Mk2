@@ -1,12 +1,21 @@
-<fieldset>
-	<legend>Static Layer</legend>
+<div [formGroup]="layerFormGroup">
 	<fieldset>
-		<legend>DataSet</legend>
+		<legend>Static Layer</legend>
+		<fieldset>
+			<legend>DataSet</legend>
+		</fieldset>
+		<fieldset>
+			<legend>Default Image</legend>
+		</fieldset>
+		<fieldset>
+			<legend>Components</legend>
+			<div formarray="components">
+				@for(component of components; track component) {
+					@if (componentIsStatic(component)) {
+						<app-component-static-asset-editor [componentFormGroup]="component" />
+					}
+				}
+			</div>
+		</fieldset>
 	</fieldset>
-	<fieldset>
-		<legend>Default Image</legend>
-	</fieldset>
-	<fieldset>
-		<legend>Components</legend>
-	</fieldset>
-</fieldset>
+</div>
