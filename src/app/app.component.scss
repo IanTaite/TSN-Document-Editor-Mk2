@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "left right";
+  height: 100vh;
+  height: 100svh;
+
+  .left-pane {
+    grid-area: left;
+    background-color: lighten(lightblue, 10%);
+    overflow-y: auto;
+  }
+
+  .right-pane {
+    grid-area: right;
+    background-color: lighten(lightgreen, 10%);
+    overflow-y: auto;
+  }
+}

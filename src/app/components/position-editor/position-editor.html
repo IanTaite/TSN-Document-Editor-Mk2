@@ -1,0 +1,35 @@
+<fieldset>
+  <legend>Position</legend>
+  <div class="form-group">
+    <label for="x">X</label>
+    <input id="x" type="number" formControlName="x">
+    @if (positionFormGroup.get('x')?.invalid) {
+      <div class="validation-errors">
+      </div>
+    }
+  </div>
+  <div class="form-group">
+    <label for="y">Y</label>
+    <input id="y" type="number" formControlName="y">
+    @if (positionFormGroup.get('y')?.invalid) {
+      <div class="validation-errors">
+      </div>
+    }
+  </div>
+  <div class="form-group">
+    <label for="width">Width</label>
+    <input id="width" type="number" formControlName="width">
+    @if (positionFormGroup.get('width')?.invalid) {
+      <div class="validation-errors">
+      </div>
+    }
+  </div>
+  <div class="form-group">
+    <label for="height">Height</label>
+    <input id="height" type="number" formControlName="height">
+    @if (positionFormGroup.get('height')?.invalid) {
+      <div class="validation-errors">
+      </div>
+    }
+  </div>
+</fieldset>

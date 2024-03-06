@@ -1,0 +1,61 @@
+<h1>Document Editor</h1>
+<form [formGroup]="masterForm">
+  <fieldset>
+    <legend>Image Definition Editor</legend>
+    <div class="form-group">
+      <label for="name">Document name</label>
+      <input id="name" type="text" formControlName="name">
+      @if (masterForm.get('name')?.invalid) {
+        <div class="validation-errors">
+        </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="imageSizeTemplateId">Image size template Id</label>
+      <input id="imageSizeTemplateId" type="text" formControlName="imageSizeTemplateId">
+      @if (masterForm.get('imageSizeTemplateId')?.invalid) {
+        <div class="validation-errors">
+        </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="outputImageType">Output image type</label>
+      <input id="outputImageType" type="number" formControlName="outputImageType">
+      @if (masterForm.get('outputImageType')?.invalid) {
+        <div class="validation-errors">
+        </div>
+      }
+    </div>
+    <fieldset>
+      <div class="form-group">
+        <legend>Variant Keys</legend>
+        <label for="variantKeys">Variant keys</label>
+        <app-variant-keys-editor controlId="variantKeys" formControlName="variantKeys" />
+        @if (masterForm.get('variantKeys')?.invalid) {
+          <div class="validation-errors">
+          </div>
+        }
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Layers</legend>
+      <div formArray="imageLayers">
+        @for (layer of layers; track layer) {
+          <app-image-layer-editor [layerFormGroup]="layer" />
+        }
+      </div>
+    </fieldset>
+  </fieldset>
+</form>
+
+<h2>Diagnostics</h2>
+<div class="diagnostics" style="display:flex;font-size:0.75rem;">
+  <div class="left" style="width:50%">
+    <h3>Form Value</h3>
+    <pre><code>{{ masterForm.value | json }}</code></pre>
+  </div>
+  <div class="right" style="width:50%">
+    <h3>Image Definition</h3>
+    <pre><code>{{ imageDefinition | json }}</code></pre>
+  </div>
+</div>

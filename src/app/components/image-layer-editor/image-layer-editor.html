@@ -1,0 +1,6 @@
+@if (isLayerStatic) {
+  <app-image-layer-static-editor [layerFormGroup]="layerFormGroup" />
+}
+@else if (isLayerText) {
+  <app-image-layer-text-editor [layerFormGroup]="layerFormGroup" />
+}

@@ -1,0 +1,12 @@
+<div class="keys-editor">
+  <div class="key-container">
+    @for(key of keys; track key) {
+      <span class="key-pill">
+        <span>{{key}}</span>
+        <span (click)="onDeleteKeyButton_click(key)">X</span>
+      </span>
+    }
+  </div>
+  <input [id]="controlId" type="text" required [(ngModel)]="newKeyValue" [disabled]="isDisabled" />
+  <button (click)="onAddKeyButton_click()" [disabled]="isDisabled">Add</button>
+</div>
