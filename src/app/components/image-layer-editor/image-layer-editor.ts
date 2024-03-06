@@ -5,23 +5,32 @@ import { ImageLayerTextEditorComponent } from '../image-layer-text-editor/image-
 import { ELayerType } from '../../image-definitions/interfaces/ELayerType';
 
 @Component({
-  selector: 'app-image-layer-editor',
-  standalone: true,
-  imports: [ReactiveFormsModule, ImageLayerStaticEditorComponent, ImageLayerTextEditorComponent],
-  templateUrl: './image-layer-editor.html',
-  styleUrl: './image-layer-editor.scss'
+	selector: 'app-image-layer-editor',
+	standalone: true,
+	imports: [
+		ReactiveFormsModule,
+		ImageLayerStaticEditorComponent,
+		ImageLayerTextEditorComponent,
+	],
+	templateUrl: './image-layer-editor.html',
+	styleUrl: './image-layer-editor.scss',
 })
 export class ImageLayerEditorComponent {
-  @Input({required: true}) layerFormGroup!: FormGroup;
+	@Input({ required: true }) layerFormGroup!: FormGroup;
 
-  get isLayerStatic() {
-    const result = this.layerFormGroup.value.layerType === ELayerType.Static;
-    return result;
-  }
+	get isLayerStatic() {
+		const result = this.layerFormGroup.value.layerType === ELayerType.Static;
+		return result;
+	}
 
-  get isLayerText() {
-    const result = this.layerFormGroup.value.layerType === ELayerType.Text;
-    console.log('Comparing', this.layerFormGroup.value.layerType , ELayerType.Text, result);
-    return result;
-  }
+	get isLayerText() {
+		const result = this.layerFormGroup.value.layerType === ELayerType.Text;
+		console.log(
+			'Comparing',
+			this.layerFormGroup.value.layerType,
+			ELayerType.Text,
+			result,
+		);
+		return result;
+	}
 }

@@ -1,12 +1,12 @@
-import { IImageLayer } from "./IImageLayer";
+import { IImageLayer } from './IImageLayer';
 
 export interface IImageDefinition {
-	id: string ;
+	id: string;
 	name: string | null;
 	clientId: string;
 	imageSizeTemplateId: string | null;
 	outputImageType: number;
 	integrity: string | null;
-	variantKeys: string[] ;
+	variantKeys: string[];
 	imageLayers: IImageLayer[];
 }
