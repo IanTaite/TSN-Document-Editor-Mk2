@@ -32,8 +32,8 @@
 			}
 		</div>
 		<fieldset>
+			<legend>Variant Keys</legend>
 			<div class="form-group">
-				<legend>Variant Keys</legend>
 				<label for="variantKeys">Variant keys</label>
 				<app-variant-keys-editor
 					controlId="variantKeys"
@@ -44,14 +44,11 @@
 				}
 			</div>
 		</fieldset>
-		<fieldset>
-			<legend>Layers</legend>
-			<div formArray="imageLayers">
-				@for (layer of layers; track layer) {
-				<app-image-layer-editor [layerFormGroup]="layer" />
-				}
-			</div>
-		</fieldset>
+		<div formArray="imageLayers">
+			@for (layer of layers; track layer) {
+			<app-image-layer-editor [layerFormGroup]="layer" />
+			}
+		</div>
 	</fieldset>
 </form>
 

@@ -1,12 +1,35 @@
 <div [formGroup]="layerFormGroup">
 	<fieldset>
 		<legend>Static Layer</legend>
-		<fieldset>
-			<legend>DataSet</legend>
-		</fieldset>
-		<fieldset>
-			<legend>Default Image</legend>
-		</fieldset>
+		<div class="layer-settings">
+			<fieldset class="dataset">
+				<legend>DataSet</legend>
+				@if (layerFormGroup.value.dataSet === null) {
+					<div>No value set</div>
+				}
+			</fieldset>
+			<fieldset class="default-image">
+				<legend>Default Image</legend>
+				@if (layerFormGroup.value.defaultImage === null) {
+					<div>No value set</div>
+				} @else {
+					<app-default-image-editor [defaultImageFormGroup]="defaultImage" />
+				}
+			</fieldset>
+			<fieldset class="useVariantKeys">
+				<legend>Variant Keys</legend>
+				<div class="field-group">
+					<input
+						id="useVariantKeys"
+						type="checkbox"
+						formControlName="useVariantKeys"
+					/>
+					<label for="useVariantKeys">
+						<span>Use variant keys</span>
+					</label>
+				</div>
+			</fieldset>
+		</div>
 		<fieldset>
 			<legend>Components</legend>
 			<div formarray="components">

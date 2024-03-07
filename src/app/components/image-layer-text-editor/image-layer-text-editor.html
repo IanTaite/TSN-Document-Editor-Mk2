@@ -1,6 +1,27 @@
-<fieldset>
-	<legend>Text Layer</legend>
+<div [formGroup]="layerFormGroup">
 	<fieldset>
-		<legend>Components</legend>
+		<legend>Text Layer</legend>
+		<fieldset>
+			<legend>DataSet</legend>
+		</fieldset>
+		<fieldset>
+			<legend>Default Image</legend>
+		</fieldset>
+		<fieldset>
+			<legend>Use Variant Keys</legend>
+			<div class="field-group">
+				<input
+          id="useVariantKeys"
+          type="checkbox"
+          formControlName="useVariantKeys"
+        />
+				<label for="useVariantKeys">
+					<span>Use variant keys</span>
+				</label>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Components</legend>
+		</fieldset>
 	</fieldset>
-</fieldset>
+</div>

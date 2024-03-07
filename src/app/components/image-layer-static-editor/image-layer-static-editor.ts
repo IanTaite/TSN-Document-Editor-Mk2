@@ -1,12 +1,21 @@
 import { Component, Input } from '@angular/core';
-import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { EComponentType, IComponentBase, IComponentStaticAsset } from '../../image-definitions/interfaces';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+	EComponentType,
+	IComponentBase,
+	IComponentStaticAsset,
+} from '../../image-definitions/interfaces';
 import { ComponentStaticAssetEditorComponent } from '../component-static-asset-editor/component-static-asset-editor';
+import { DefaultImageEditorComponent } from '../default-image-editor/default-image-editor';
 
 @Component({
 	selector: 'app-image-layer-static-editor',
 	standalone: true,
-	imports: [ReactiveFormsModule, ComponentStaticAssetEditorComponent],
+	imports: [
+		ReactiveFormsModule,
+		ComponentStaticAssetEditorComponent,
+		DefaultImageEditorComponent,
+	],
 	templateUrl: './image-layer-static-editor.html',
 	styleUrl: './image-layer-static-editor.scss',
 })
@@ -14,8 +23,13 @@ export class ImageLayerStaticEditorComponent {
 	@Input({ required: true }) layerFormGroup!: FormGroup;
 
 	get components(): FormGroup[] {
-		const result = (this.layerFormGroup.get('components') as FormArray).controls as FormGroup[];
+		const result = (this.layerFormGroup.get('components') as FormArray)
+			.controls as FormGroup[];
 		return result;
+	}
+
+	get defaultImage() : FormControl {
+		return this.layerFormGroup.get('defaultImage') as FormControl;
 	}
 
 	componentIsStatic(component: FormGroup): boolean {

@@ -6,30 +6,30 @@ import {
 } from '@angular/forms';
 
 @Component({
-	selector: 'app-variant-keys-editor',
-	standalone: true,
-	imports: [FormsModule],
-	templateUrl: './variant-keys-editor.html',
-	styleUrl: './variant-keys-editor.scss',
+  selector: 'app-variants-editor',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './variants-editor.html',
+  styleUrl: './variants-editor.scss',
 	providers: [
 		{
 			provide: NG_VALUE_ACCESSOR,
-			useExisting: forwardRef(() => VariantKeysEditorComponent),
+			useExisting: forwardRef(() => VariantsEditorComponent),
 			multi: true,
 		},
 	],
 })
-export class VariantKeysEditorComponent implements ControlValueAccessor {
+export class VariantsEditorComponent implements ControlValueAccessor {
 	@Input({ required: true }) controlId!: string;
 
-	variantKeys: string[] = [];
-	newKeyValue = '';
+	variants: string[] = [];
+	newVariantValue = '';
 	isDisabled = false;
 	onChange: (obj: any) => void = () => {};
 	onTouched: () => void = () => {};
 
 	writeValue(obj: string[]): void {
-		this.variantKeys = obj ?? [];
+		this.variants = obj ?? [];
 	}
 
 	registerOnChange(fn: any): void {
@@ -46,19 +46,19 @@ export class VariantKeysEditorComponent implements ControlValueAccessor {
 
 	onAddKeyButton_click() {
 		if (
-			this.newKeyValue.trim() !== '' &&
-			!this.variantKeys.includes(this.newKeyValue)
+			this.newVariantValue.trim() !== '' &&
+			!this.variants.includes(this.newVariantValue)
 		) {
-			this.variantKeys.push(this.newKeyValue);
-			this.newKeyValue = '';
+			this.variants.push(this.newVariantValue);
+			this.newVariantValue = '';
 			this.onTouched();
-			this.onChange(this.variantKeys);
+			this.onChange(this.variants);
 		}
 	}
 
 	onDeleteKeyButton_click(index: number) {
-		this.variantKeys.splice(index, 1);
+		this.variants.splice(index, 1);
 		this.onTouched();
-		this.onChange(this.variantKeys);
+		this.onChange(this.variants);
 	}
 }

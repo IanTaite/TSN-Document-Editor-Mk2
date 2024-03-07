@@ -1,0 +1,14 @@
+.row {
+	display: flex;
+	flex-direction: row;
+	gap: .5rem;
+}
+
+.paths, .position, .variants {
+	margin: 0;
+}
+
+.paths, .variants {
+	flex-grow: 1;
+	margin: 0;
+}

@@ -1,1 +1,19 @@
-<p>component-static-asset-editor works!</p>
+<div [formGroup]="componentFormGroup">
+	<fieldset>
+		<legend>Static Asset</legend>
+		<div class="row">
+			<fieldset class="paths">
+				<legend>Paths</legend>
+				<app-paths-editor [pathsFormArray]="pathsFormArray" />
+			</fieldset>
+			<fieldset class="position">
+				<legend>Position</legend>
+				<app-position-editor [positionFormGroup]="positionFormGroup" />
+			</fieldset>
+			<fieldset class="variants">
+				<legend>Variants</legend>
+				<app-variants-editor controlId="variants" formControlName="variants" />
+			</fieldset>
+		</div>
+	</fieldset>
+</div>

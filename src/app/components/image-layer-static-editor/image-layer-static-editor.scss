@@ -1,0 +1,11 @@
+.layer-settings {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: .5rem;
+
+	.dataset, .default-image {
+		flex: 1;
+		margin: 0;
+	}
+}

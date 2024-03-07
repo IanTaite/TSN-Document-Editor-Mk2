@@ -1,9 +1,9 @@
 <div class="keys-editor">
 	<div class="key-container">
-		@if (variantKeys.length === 0) {
-			<div>No keys defined.</div>
+		@if (variants.length === 0) {
+			<div>No variants defined.</div>
 		} @else {
-			@for(key of variantKeys; track key; let i = $index) {
+			@for(key of variants; track key; let i = $index) {
 			<span class="key-pill">
 				<span class="key-label">{{key}}</span>
 				<button class="key-delete-button" (click)="onDeleteKeyButton_click(i)">X</button>
@@ -15,7 +15,7 @@
 		[id]="controlId"
 		type="text"
 		required
-		[(ngModel)]="newKeyValue"
+		[(ngModel)]="newVariantValue"
 		[disabled]="isDisabled"
 	/>
 	<button (click)="onAddKeyButton_click()" [disabled]="isDisabled">Add</button>

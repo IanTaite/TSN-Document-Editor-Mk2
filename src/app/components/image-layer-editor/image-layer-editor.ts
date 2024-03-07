@@ -25,12 +25,6 @@ export class ImageLayerEditorComponent {
 
 	get isLayerText() {
 		const result = this.layerFormGroup.value.layerType === ELayerType.Text;
-		console.log(
-			'Comparing',
-			this.layerFormGroup.value.layerType,
-			ELayerType.Text,
-			result,
-		);
 		return result;
 	}
 }
