@@ -1,4 +1,10 @@
-import { Component, Input, forwardRef, inject } from '@angular/core';
+import {
+	Component,
+	OnDestroy,
+	OnInit,
+	forwardRef,
+	inject,
+} from '@angular/core';
 import {
 	ControlValueAccessor,
 	FormArray,
@@ -9,6 +15,7 @@ import {
 	Validators,
 } from '@angular/forms';
 import { IFilePath } from '../../image-definitions/interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-paths-editor',
@@ -24,12 +31,16 @@ import { IFilePath } from '../../image-definitions/interfaces';
 		},
 	],
 })
-export class PathsEditorComponent implements ControlValueAccessor {
+export class PathsEditorComponent
+	implements OnInit, OnDestroy, ControlValueAccessor
+{
 	private fb = inject(FormBuilder);
 
 	form = this.fb.group({
 		paths: this.fb.array([]),
 	});
+
+	private formSubscription!: Subscription;
 
 	isDisabled = false;
 	onChange: (obj: any) => void = () => {};
@@ -39,6 +50,16 @@ export class PathsEditorComponent implements ControlValueAccessor {
 		name: this.fb.control<string>('', Validators.required),
 		path: this.fb.control<string>('', Validators.required),
 	});
+
+	ngOnInit(): void {
+		this.formSubscription = this.form.valueChanges.subscribe((value) => {
+			this.onChange(value);
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.formSubscription.unsubscribe();
+	}
 
 	get formPathsArray(): FormArray {
 		return this.form.get('paths') as FormArray;
@@ -58,7 +79,9 @@ export class PathsEditorComponent implements ControlValueAccessor {
 			name: this.fb.control<string>(name ?? ''),
 			path: this.fb.control<string>(path ?? ''),
 		});
-		this.formPathsArray.push(this.newFilePathForm);
+		this.formPathsArray.push(newPathGroup);
+		// this.onChange(this.form.value);
+		this.onTouched();
 		this.newFilePathForm.reset();
 	}
 
