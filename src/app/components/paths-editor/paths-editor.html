@@ -1,1 +1,38 @@
-<p>paths-editor works!</p>
+@if (formPathsArray.length === 0) {
+	<div>There are no paths</div>
+} @else {
+	<div [formGroup]="form">
+		<div formArrayName="paths">
+			<table>
+				<thead>
+					<th>Name</th>
+					<th>Path</th>
+					<th></th>
+				</thead>
+				<tbody>
+					@for (fg of formPathsArrayContents; track fg; let i = $index) {
+						<tr [formGroup]="fg">
+							<td>
+								<input type="text" formControlName="name" />
+							</td>
+							<td>
+								<input type="text" formControlName="path" />
+							</td>
+							<td>
+								<button (click)="onDeletePathButton_click(i)">X</button>
+							</td>
+						</tr>
+					}
+						</tbody>
+			</table>
+		</div>
+	</div>
+}
+<div>Add New File Path</div>
+<div [formGroup]="newFilePathForm">
+	<label for="name">Name</label>
+	<input id="name" formControlName="name" />
+	<label for="path">Path</label>
+	<input id="path" formControlName="path" />
+</div>
+<button (click)="onAddNewPathButton_click()" [disabled]="newFilePathForm.invalid">Add</button>

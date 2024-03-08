@@ -24,6 +24,7 @@ export class VariantsEditorComponent implements ControlValueAccessor {
 
 	variants: string[] = [];
 	newVariantValue = '';
+
 	isDisabled = false;
 	onChange: (obj: any) => void = () => {};
 	onTouched: () => void = () => {};

@@ -22,8 +22,4 @@ export class ComponentStaticAssetEditorComponent {
 	get positionFormGroup(): FormGroup {
 		return this.componentFormGroup.get('position') as FormGroup;
 	}
-
-	get pathsFormArray(): FormArray {
-		return this.componentFormGroup.get('paths') as FormArray;
-	}
 }

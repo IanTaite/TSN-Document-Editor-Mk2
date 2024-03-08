@@ -168,14 +168,7 @@ export class DocumentEditorComponent implements OnInit {
 		source: IComponentStaticAsset,
 	): FormGroup {
 		return this.fb.group({
-			paths: this.fb.array(
-				source.paths?.map((path) =>
-					this.fb.group({
-						name: this.fb.control<string>(path.name ?? ''),
-						path: this.fb.control<string>(path.name ?? ''),
-					}),
-				) ?? [],
-			),
+			paths: this.fb.control<IFilePath[]>(source.paths ?? []),
 			componentType: this.fb.control<number>(source.componentType),
 			position: this.fb.group({
 				x: this.fb.control<number>(source.position.x),
