@@ -69,17 +69,17 @@ export class DefaultImageEditorComponent
 		return this.formFilesArray.controls as FormGroup[];
 	}
 
-	onDeletePathButton_click(index: number) {
+	onDeleteFileButton_click(index: number) {
 		this.formFilesArray.removeAt(index);
 	}
 
-	onAddNewPathButton_click() {
+	onAddNewFileButton_click() {
 		const { name, path } = this.newFilePathForm.value;
-		const newPathGroup = this.fb.group({
+		const newFileGroup = this.fb.group({
 			name: this.fb.control<string>(name ?? ''),
 			path: this.fb.control<string>(path ?? ''),
 		});
-		this.formFilesArray.push(newPathGroup);
+		this.formFilesArray.push(newFileGroup);
 		// this.onChange(this.form.value);
 		this.onTouched();
 		this.newFilePathForm.reset();

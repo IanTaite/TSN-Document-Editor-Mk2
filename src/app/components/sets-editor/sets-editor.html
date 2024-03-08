@@ -1,1 +1,38 @@
-<p>sets-editor works!</p>
+@if (formSetsArray.length === 0) {
+	<div>There are no sets</div>
+} @else {
+	<div [formGroup]="form">
+		<div formArrayName="sets">
+			<table>
+				<thead>
+					<th>Set Name</th>
+					<th>Set Account</th>
+					<th></th>
+				</thead>
+				<tbody>
+					@for (fg of formSetsArrayContents; track fg; let i = $index) {
+						<tr [formGroup]="fg">
+							<td>
+								<input type="text" formControlName="setName" />
+							</td>
+							<td>
+								<input type="text" formControlName="setAccount" />
+							</td>
+							<td>
+								<button (click)="onDeleteSetButton_click(i)">X</button>
+							</td>
+						</tr>
+					}
+						</tbody>
+			</table>
+		</div>
+	</div>
+}
+<div>Add New Set</div>
+<div [formGroup]="newSetValueForm">
+	<label for="name">Name</label>
+	<input id="name" formControlName="setName" />
+	<label for="path">Path</label>
+	<input id="path" formControlName="setAccount" />
+</div>
+<button (click)="onAddNewSetButton_click()" [disabled]="newSetValueForm.invalid">Add</button>
