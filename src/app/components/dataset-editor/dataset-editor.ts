@@ -1,7 +1,8 @@
-import { Component, OnDestroy, OnInit, inject } from '@angular/core';
-import { ReactiveFormsModule, ControlValueAccessor, FormBuilder } from '@angular/forms';
+import { Component, OnDestroy, OnInit, forwardRef, inject } from '@angular/core';
+import { ReactiveFormsModule, ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IDataSet } from '../../image-definitions/interfaces';
 import { Subscription } from 'rxjs';
+import { DefaultTextEditorComponent } from '../default-text-editor/default-text-editor';
 
 @Component({
 	selector: 'app-dataset-editor',
@@ -9,6 +10,13 @@ import { Subscription } from 'rxjs';
 	imports: [ReactiveFormsModule],
 	templateUrl: './dataset-editor.html',
 	styleUrl: './dataset-editor.scss',
+	providers: [
+		{
+			provide: NG_VALUE_ACCESSOR,
+			useExisting: forwardRef(() => DatasetEditorComponent),
+			multi: true,
+		},
+	],
 })
 export class DatasetEditorComponent implements OnInit, OnDestroy, ControlValueAccessor {
 	value: IDataSet | null = null;
