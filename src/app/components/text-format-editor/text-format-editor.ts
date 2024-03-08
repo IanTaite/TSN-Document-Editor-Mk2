@@ -51,5 +51,6 @@ export class TextFormatEditorComponent implements OnInit, OnDestroy, ControlValu
 
 	setDisabledState?(isDisabled: boolean): void {
 		this.isDisabled = isDisabled;
+		this.isDisabled ? this.form.disable({onlySelf: true}) : this.form.enable({onlySelf: true});
 	}
 }

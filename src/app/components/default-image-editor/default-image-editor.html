@@ -19,7 +19,7 @@
 								<input type="text" formControlName="path" />
 							</td>
 							<td>
-								<button (click)="onDeleteFileButton_click(i)">X</button>
+								<button (click)="onDeleteFileButton_click(i)" [disabled]="isDisabled">X</button>
 							</td>
 						</tr>
 					}
@@ -35,4 +35,4 @@
 	<label for="path">Path</label>
 	<input id="path" formControlName="path" />
 </div>
-<button (click)="onAddNewFileButton_click()" [disabled]="newFilePathForm.invalid">Add</button>
+<button (click)="onAddNewFileButton_click()" [disabled]="isDisabled || newFilePathForm.invalid">Add</button>

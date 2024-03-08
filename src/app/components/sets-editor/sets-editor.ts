@@ -105,5 +105,12 @@ export class SetsEditorComponent implements ControlValueAccessor {
 
 	setDisabledState?(isDisabled: boolean): void {
 		this.isDisabled = isDisabled;
+		if (this.isDisabled) {
+			this.form.disable({onlySelf: true});
+			this.newSetValueForm.disable({onlySelf: true});
+		} else {
+			this.form.enable({onlySelf: true});
+			this.newSetValueForm.enable({onlySelf: true});
+		}
 	}
 }

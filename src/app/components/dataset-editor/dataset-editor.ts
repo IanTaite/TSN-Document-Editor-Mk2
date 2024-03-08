@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit, forwardRef, inject } from '@angular/core'
 import { ReactiveFormsModule, ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { IDataSet } from '../../image-definitions/interfaces';
 import { Subscription } from 'rxjs';
-import { DefaultTextEditorComponent } from '../default-text-editor/default-text-editor';
 
 @Component({
 	selector: 'app-dataset-editor',
@@ -59,5 +58,6 @@ export class DatasetEditorComponent implements OnInit, OnDestroy, ControlValueAc
 
 	setDisabledState?(isDisabled: boolean): void {
 		this.isDisabled = isDisabled;
+		this.isDisabled ? this.form.disable({onlySelf: true}) : this.form.enable({onlySelf: true});
 	}
 }

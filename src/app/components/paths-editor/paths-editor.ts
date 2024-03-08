@@ -107,5 +107,12 @@ export class PathsEditorComponent
 
 	setDisabledState?(isDisabled: boolean): void {
 		this.isDisabled = isDisabled;
+		if (this.isDisabled) {
+			this.form.disable({onlySelf: true});
+			this.newFilePathForm.disable({onlySelf: true});
+		} else {
+			this.form.enable({onlySelf: true});
+			this.newFilePathForm.enable({onlySelf: true});
+		}
 	}
 }

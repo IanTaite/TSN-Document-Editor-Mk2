@@ -58,6 +58,9 @@ export class DocumentEditorComponent implements OnInit {
 				this.documentChanged.emit(value);
 			},
 		);
+		this.masterForm.statusChanges.subscribe((status) => {
+			console.log(status);
+		});
 		this.documentChanged.emit(this.masterForm.value);
 	}
 
@@ -80,7 +83,7 @@ export class DocumentEditorComponent implements OnInit {
 			),
 			outputImageType: this.fb.control<number>(model.outputImageType),
 			integrity: this.fb.control<string>(model.integrity ?? ''),
-			variantKeys: this.fb.control<string[]>(model.variantKeys),
+			variantKeys: this.fb.control<string[]>([...model.variantKeys]),
 			imageLayers: this.fb.array([]),
 		});
 
@@ -174,7 +177,7 @@ export class DocumentEditorComponent implements OnInit {
 				width: this.fb.control<number>(source.position.width),
 				height: this.fb.control<number>(source.position.height),
 			}),
-			variants: this.fb.control<string[]>(source.variants ?? []),
+			variants: this.fb.control<string[]>(source.variants ? [...source.variants]: []),
 		});
 	}
 
@@ -192,7 +195,7 @@ export class DocumentEditorComponent implements OnInit {
 				width: this.fb.control<number>(source.position.width),
 				height: this.fb.control<number>(source.position.height),
 			}),
-			variants: this.fb.control<string[]>(source.variants ?? []),
+			variants: this.fb.control<string[]>(source.variants ? [...source.variants]: []),
 		});
 	}
 }
