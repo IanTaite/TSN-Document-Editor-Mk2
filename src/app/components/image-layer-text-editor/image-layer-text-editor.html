@@ -4,11 +4,7 @@
 		<div class="layer-settings">
 			<fieldset class="dataset">
 				<legend>DataSet</legend>
-				@if (layerFormGroup.value.dataSet === null) {
-					<div>No value set</div>
-				} @else {
-					<app-dataset-editor />
-				}
+  			<app-dataset-editor />
 			</fieldset>
 			<fieldset class="default-image">
 				<legend>Default Image</legend>
