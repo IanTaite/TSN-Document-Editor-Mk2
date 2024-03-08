@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="left-pane">
-		<app-document-editor [imageDefinition]="data" />
+		<app-document-editor [imageDefinition]="apidata" (documentChanged)="onDocumentChanged($event)" />
 	</div>
 	<div class="right-pane">
-		<app-document-viewer></app-document-viewer>
+		<app-document-viewer [imageDefinition]="apidata" [documentData]="documentData" />
 	</div>
 </div>

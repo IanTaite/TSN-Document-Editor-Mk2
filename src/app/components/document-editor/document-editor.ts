@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 import {
 	FormArray,
@@ -23,6 +23,7 @@ import {
 	IImageLayerStatic,
 	IImageLayerText,
 } from '../../image-definitions/interfaces';
+import { Subscription } from 'rxjs';
 
 // type FiltersFormType = { [K in keyof Omit<InvoiceFilters, 'raisedDate' | 'dueDate' | 'toString'>]: AbstractControl<InvoiceFilters[K]>; };
 
@@ -40,14 +41,26 @@ import {
 })
 export class DocumentEditorComponent implements OnInit {
 	@Input({ required: true }) imageDefinition!: IImageDefinition;
-
-	masterForm!: FormGroup;
+	@Output() documentChanged = new EventEmitter<IImageDefinition|null>();
 
 	private fb = inject(FormBuilder);
+	private masterFormSubscription!: Subscription;
+
+	masterForm!: FormGroup;
 
 	ngOnInit(): void {
 		this.imageDefinition = SAMPLE_DATA;
 		this.masterForm = this.buildFormFromModel(this.imageDefinition);
+		this.masterFormSubscription = this.masterForm.valueChanges.subscribe(
+			(value) => {
+				this.documentChanged.emit(value);
+			},
+		);
+		this.documentChanged.emit(this.masterForm.value);
+	}
+
+	ngOnDestroy(): void {
+		this.masterFormSubscription.unsubscribe();
 	}
 
 	get layers(): FormGroup[] {
