@@ -1,15 +1,28 @@
 <div [formGroup]="componentFormGroup">
 	<fieldset>
-		<legend>Static Asset</legend>
+		<legend>Directsmile</legend>
 		<div class="row">
-			<fieldset class="paths">
-				<legend>Paths</legend>
+			<fieldset class="sets">
+				<legend>Sets</legend>
+				<app-sets-editor formControlName="sets" />
 			</fieldset>
 			<fieldset class="position">
 				<legend>Position</legend>
+				<app-position-editor [positionFormGroup]="positionFormGroup" />
 			</fieldset>
 			<fieldset class="variants">
 				<legend>Variants</legend>
+				<app-variants-editor controlId="variants" formControlName="variants" />
+			</fieldset>
+		</div>
+		<div class="row">
+			<fieldset class="default-text">
+				<legend>Default Text</legend>
+				<app-default-text-editor formControlName="defaultText" />
+			</fieldset>
+			<fieldset class="text-format">
+				<legend>Text Format</legend>
+				<app-text-format-editor formControlName="textFormat" />
 			</fieldset>
 		</div>
 	</fieldset>

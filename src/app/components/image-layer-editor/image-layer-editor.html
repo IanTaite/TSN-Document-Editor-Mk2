@@ -1,5 +1,9 @@
 @if (isLayerStatic) {
-<app-image-layer-static-editor [layerFormGroup]="layerFormGroup" />
+<div class="layer-wrapper">
+	<app-image-layer-static-editor [layerFormGroup]="layerFormGroup" />
+</div>
 } @else if (isLayerText) {
-<app-image-layer-text-editor [layerFormGroup]="layerFormGroup" />
+<div class="layer-wrapper">
+	<app-image-layer-text-editor [layerFormGroup]="layerFormGroup" />
+</div>
 }

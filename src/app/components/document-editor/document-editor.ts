@@ -22,6 +22,7 @@ import {
 	IImageLayer,
 	IImageLayerStatic,
 	IImageLayerText,
+	ISet,
 } from '../../image-definitions/interfaces';
 import { Subscription } from 'rxjs';
 
@@ -199,14 +200,7 @@ export class DocumentEditorComponent implements OnInit {
 		return this.fb.group({
 			defaultText: this.fb.control<string>(source.defaultText ?? ''),
 			textFormat: this.fb.control<string>(source.textFormat ?? ''),
-			sets: this.fb.array(
-				source.sets?.map((set) =>
-					this.fb.group({
-						setAccount: this.fb.control<string>(set.setAccount ?? ''),
-						setName: this.fb.control<string>(set.setName ?? ''),
-					}),
-				) ?? [],
-			),
+			sets: this.fb.control<ISet[]>(source.sets ?? []),
 			componentType: this.fb.control<number>(source.componentType),
 			position: this.fb.group({
 				x: this.fb.control<number>(source.position.x),

@@ -36,6 +36,13 @@
 		</div>
 		<fieldset>
 			<legend>Components</legend>
+			<div formarray="components">
+				@for(component of components; track component) {
+					@if (componentIsDirectsmile(component)) {
+						<app-component-directsmile-editor [componentFormGroup]="component" />
+					}
+				}
+			</div>
 		</fieldset>
 	</fieldset>
 </div>

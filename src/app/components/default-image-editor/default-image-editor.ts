@@ -12,7 +12,6 @@ export class DefaultImageEditorComponent implements OnInit {
   @Input({required: true}) defaultImageFormGroup!: AbstractControl;
 
 	ngOnInit(): void {
-		throw new Error('Method not implemented.');
 	}
 }
 

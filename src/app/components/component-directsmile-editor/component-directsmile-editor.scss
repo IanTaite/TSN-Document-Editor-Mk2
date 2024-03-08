@@ -1,0 +1,13 @@
+.row {
+	display: flex;
+	flex-direction: row;
+	gap: .5rem;
+}
+
+.sets, .position, .variants {
+	margin: 0;
+}
+
+.sets, .default-text, .text-format {
+	flex-grow: 1;
+}
