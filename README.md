@@ -11,6 +11,8 @@ The main questions are
 
 When the app runs, the browser window is split into two parts. The left pane shows the document editor, the right pane shows some diagnostics in lieu of a document viewer which hasn't been written yet.
 
+To run the app, nothing more than "npm start" is needed.
+
 This repo contains no customer data, no proprietary tech, no passwords or keys.
 
 This app makes no API calls and works entirely in the browser. All state is lost on browser refresh.
