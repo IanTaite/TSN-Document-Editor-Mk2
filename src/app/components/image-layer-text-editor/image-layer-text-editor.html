@@ -8,11 +8,7 @@
 			</fieldset>
 			<fieldset class="default-image">
 				<legend>Default Image</legend>
-				@if (layerFormGroup.value.defaultImage === null) {
-					<div>No value set</div>
-				} @else {
-					<app-default-image-editor [defaultImageFormGroup]="defaultImage" />
-				}
+  			<app-default-image-editor formControlName="defaultImage" />
 			</fieldset>
 			<fieldset class="useVariantKeys">
 				<legend>Use Variant Keys</legend>

@@ -17,6 +17,7 @@ import {
 	IComponentDirectSmile,
 	IComponentStaticAsset,
 	IDataSet,
+	IDefaultImage,
 	IFilePath,
 	IImageDefinition,
 	IImageLayer,
@@ -119,30 +120,13 @@ export class DocumentEditorComponent implements OnInit {
 				this.convertImageLayerComponentArrayToFormGroupArray(input.components),
 			),
 			dataSet: this.fb.control<IDataSet | null>(input.dataSet),
-			defaultImage: this.fb.control(null),
+			defaultImage: this.fb.control<IDefaultImage|null>(input.defaultImage),
 			useVariantKeys: this.fb.control<boolean>(input.useVariantKeys),
 		});
 		return layerGroup;
 	}
 
 	private convertTextLayerToFormGroup(input: IImageLayerText): FormGroup {
-		let forTheLoveOfGod: any;
-
-		if (input.defaultImage === null || input.defaultImage.files === null) {
-			forTheLoveOfGod = this.fb.control(null);
-		} else {
-			forTheLoveOfGod = this.fb.group({
-				files: this.fb.array(
-					input.defaultImage.files.map((f) =>
-						this.fb.group({
-							name: this.fb.control<string | null>(f.name),
-							path: this.fb.control<string | null>(f.path),
-						}),
-					),
-				),
-			});
-		}
-
 		const layerGroup = this.fb.group({
 			layerType: this.fb.control<number>(input.layerType),
 			layerPosition: this.fb.control<number>(input.layerPosition),
@@ -150,7 +134,7 @@ export class DocumentEditorComponent implements OnInit {
 				this.convertImageLayerComponentArrayToFormGroupArray(input.components),
 			),
 			dataSet: this.fb.control<IDataSet | null>(input.dataSet),
-			defaultImage: forTheLoveOfGod,
+			defaultImage: this.fb.control<IDefaultImage|null>(input.defaultImage),
 			useVariantKeys: this.fb.control<boolean>(input.useVariantKeys),
 		});
 		return layerGroup;
