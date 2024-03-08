@@ -1,11 +1,17 @@
 import { Component, Input } from '@angular/core';
-import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+	FormArray,
+	FormControl,
+	FormGroup,
+	ReactiveFormsModule,
+} from '@angular/forms';
 import {
 	EComponentType,
 	IComponentBase,
 	IComponentStaticAsset,
 } from '../../image-definitions/interfaces';
 import { ComponentStaticAssetEditorComponent } from '../component-static-asset-editor/component-static-asset-editor';
+import { DatasetEditorComponent } from '../dataset-editor/dataset-editor';
 import { DefaultImageEditorComponent } from '../default-image-editor/default-image-editor';
 
 @Component({
@@ -14,6 +20,7 @@ import { DefaultImageEditorComponent } from '../default-image-editor/default-ima
 	imports: [
 		ReactiveFormsModule,
 		ComponentStaticAssetEditorComponent,
+		DatasetEditorComponent,
 		DefaultImageEditorComponent,
 	],
 	templateUrl: './image-layer-static-editor.html',
@@ -28,7 +35,11 @@ export class ImageLayerStaticEditorComponent {
 		return result;
 	}
 
-	get defaultImage() : FormControl {
+	get dataset(): FormControl {
+		return this.layerFormGroup.get('dataset') as FormControl;
+	}
+
+	get defaultImage(): FormControl {
 		return this.layerFormGroup.get('defaultImage') as FormControl;
 	}
 
