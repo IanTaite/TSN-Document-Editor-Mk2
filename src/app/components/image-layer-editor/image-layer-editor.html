@@ -1,9 +1,9 @@
 @if (isLayerStatic) {
 <div class="layer-wrapper">
-	<app-image-layer-static-editor [layerFormGroup]="layerFormGroup" />
+	<app-image-layer-static-editor [layerFormGroup]="layerFormGroup" [canMoveEarlier]="canMoveEarlier" [canMoveLater]="canMoveLater" />
 </div>
 } @else if (isLayerText) {
 <div class="layer-wrapper">
-	<app-image-layer-text-editor [layerFormGroup]="layerFormGroup" />
+	<app-image-layer-text-editor [layerFormGroup]="layerFormGroup" [canMoveEarlier]="canMoveEarlier" [canMoveLater]="canMoveLater" />
 </div>
 }

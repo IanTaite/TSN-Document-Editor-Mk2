@@ -45,12 +45,12 @@
 			</div>
 		</fieldset>
 		<div formArray="imageLayers">
-			@for (layer of layers; track layer) {
-			<app-image-layer-editor [layerFormGroup]="layer" />
+			@for (layer of layers; track layer; let isFirst = $first, isLast = $last) {
+			<app-image-layer-editor [layerFormGroup]="layer" [canMoveEarlier]="!isFirst" [canMoveLater]="!isLast" />
 			}
 		</div>
 	</fieldset>
 </form>
-<button (click)="masterForm.enable()">Enable Whole Form</button>
-<button (click)="masterForm.disable()">Disable Whole Form</button>
+<button (click)="masterForm.enable({onlySelf: true})">Enable Whole Form</button>
+<button (click)="masterForm.disable({onlySelf: true})">Disable Whole Form</button>
 

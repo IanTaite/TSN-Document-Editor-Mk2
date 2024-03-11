@@ -28,6 +28,8 @@ import { DefaultImageEditorComponent } from '../default-image-editor/default-ima
 })
 export class ImageLayerTextEditorComponent {
 	@Input({ required: true }) layerFormGroup!: FormGroup;
+	@Input({ required: true }) canMoveEarlier!: boolean;
+	@Input({ required: true }) canMoveLater!: boolean;
 
 	get components(): FormGroup[] {
 		const result = (this.layerFormGroup.get('components') as FormArray)

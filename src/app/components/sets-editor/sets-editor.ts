@@ -31,7 +31,7 @@ import { ISet } from '../../image-definitions/interfaces';
 		},
 	],
 })
-export class SetsEditorComponent implements ControlValueAccessor {
+export class SetsEditorComponent implements OnInit, OnDestroy, ControlValueAccessor {
 	private fb = inject(FormBuilder);
 
 	form = this.fb.group({

@@ -13,7 +13,7 @@ import { IImageDefinition } from './image-definitions/interfaces';
 	styleUrl: './app.component.scss',
 })
 export class AppComponent {
-	readonly apidata = SAMPLE_DATA;
+	readonly apidata = JSON.parse(JSON.stringify(SAMPLE_DATA)) as IImageDefinition;
 	documentData: any;
 
 	onDocumentChanged(documentData: IImageDefinition|null) {
