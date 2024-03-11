@@ -89,7 +89,7 @@ export class DocumentEditorComponent implements OnInit {
 
 		const layerFormGroups = model.imageLayers
 			.sort((a, b) => a.layerPosition - b.layerPosition)
-			.map((modelLayer: IImageLayer, modelLayerIndex: number) => {
+			.map((modelLayer: IImageLayer) => {
 				if (modelLayer.layerType === ELayerType.Static) {
 					const layerFormGroup = this.convertStaticLayerToFormGroup(
 						modelLayer as IImageLayerStatic,
