@@ -33,12 +33,15 @@
 		</div>
 		<fieldset>
 			<legend>Components</legend>
-			<div formarray="components">
+			<div formarray="components" class="component-container">
 				@for(component of components; track component) {
 					@if (componentIsDirectsmile(component)) {
 						<app-component-directsmile-editor [componentFormGroup]="component" />
 					}
 				}
+			</div>
+			<div class="action-buttons">
+				<button>Add DirectSmile</button>
 			</div>
 		</fieldset>
 	</fieldset>

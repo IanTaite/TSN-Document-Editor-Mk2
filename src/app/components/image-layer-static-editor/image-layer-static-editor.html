@@ -31,12 +31,15 @@
 		</div>
 		<fieldset>
 			<legend>Components</legend>
-			<div formarray="components">
+			<div formarray="components" class="component-container">
 				@for(component of components; track component) {
 					@if (componentIsStatic(component)) {
 						<app-component-static-asset-editor [componentFormGroup]="component" />
 					}
 				}
+			</div>
+			<div class="action-buttons">
+				<button>Add Static Asset</button>
 			</div>
 		</fieldset>
 	</fieldset>
