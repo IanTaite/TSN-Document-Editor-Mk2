@@ -18,6 +18,8 @@ import { VariantsEditorComponent } from '../variants-editor/variants-editor';
 })
 export class ComponentStaticAssetEditorComponent {
 	@Input({ required: true }) componentFormGroup!: FormGroup;
+	@Input({ required: true }) canMoveEarlier!: boolean;
+	@Input({ required: true }) canMoveLater!: boolean;
 
 	get positionFormGroup(): FormGroup {
 		return this.componentFormGroup.get('position') as FormGroup;

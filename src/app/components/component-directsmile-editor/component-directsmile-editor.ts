@@ -22,6 +22,8 @@ import { TextFormatEditorComponent } from '../text-format-editor/text-format-edi
 })
 export class ComponentDirectsmileEditorComponent {
 	@Input({ required: true }) componentFormGroup!: FormGroup;
+	@Input({ required: true }) canMoveEarlier!: boolean;
+	@Input({ required: true }) canMoveLater!: boolean;
 
 	get positionFormGroup(): FormGroup {
 		return this.componentFormGroup.get('position') as FormGroup;
