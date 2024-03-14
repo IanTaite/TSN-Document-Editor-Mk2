@@ -49,6 +49,10 @@
 			<app-image-layer-editor [layerFormGroup]="layer" [canMoveEarlier]="!isFirst" [canMoveLater]="!isLast" />
 			}
 		</div>
+		<div class="action-buttons">
+			<button (click)="onNewStaticLayer_click()">Add Static Layer</button>
+			<button (click)="onNewTextLayer_click()">Add Text Layer</button>
+		</div>
 	</fieldset>
 </form>
 <button (click)="masterForm.enable({onlySelf: true})">Enable Whole Form</button>

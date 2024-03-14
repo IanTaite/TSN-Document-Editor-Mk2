@@ -2,9 +2,9 @@
 	<fieldset>
 		<legend>Static Layer</legend>
 		<div class="action-buttons">
-			<button [disabled]="!canMoveEarlier">Move Up</button>
-			<button [disabled]="!canMoveLater">Move Down</button>
-			<button>Delete</button>
+			<button (click)="onLayerMoveEarlierButton_click()" [disabled]="!canMoveEarlier">Move Up</button>
+			<button (click)="onLayerMoveLaterButton_click()" [disabled]="!canMoveLater">Move Down</button>
+			<button (click)="onLayerDeleteButton_click()">Delete</button>
 		</div>
 		<div class="layer-settings">
 			<fieldset class="dataset">
@@ -34,12 +34,17 @@
 			<div formarray="components" class="component-container">
 				@for(component of components; track component; let isFirst = $first, isLast = $last) {
 					@if (componentIsStatic(component)) {
-						<app-component-static-asset-editor [componentFormGroup]="component" [canMoveEarlier]="!isFirst" [canMoveLater]="!isLast" />
+						<app-component-static-asset-editor
+							[layerFormGroup]="layerFormGroup"
+							[componentFormGroup]="component"
+							[canMoveEarlier]="!isFirst"
+							[canMoveLater]="!isLast"
+						/>
 					}
 				}
 			</div>
 			<div class="action-buttons">
-				<button>New Static Asset</button>
+				<button (click)="onNewComponent_click()">New Static Asset</button>
 			</div>
 		</fieldset>
 	</fieldset>

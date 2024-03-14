@@ -1,18 +1,16 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import {
 	FormArray,
 	FormControl,
 	FormGroup,
 	ReactiveFormsModule,
 } from '@angular/forms';
-import {
-	EComponentType,
-	IComponentBase,
-	IComponentStaticAsset,
-} from '../../image-definitions/interfaces';
+import { EComponentType } from '../../image-definitions/interfaces';
 import { ComponentStaticAssetEditorComponent } from '../component-static-asset-editor/component-static-asset-editor';
 import { DatasetEditorComponent } from '../dataset-editor/dataset-editor';
 import { DefaultImageEditorComponent } from '../default-image-editor/default-image-editor';
+import { ImageDefinitionFormStoreService } from '../../services/image-definition-form/image-definition-form-store.service';
+import { componentAddNewAction, layerDeleteAction, layerMoveEarlierAction, layerMoveLaterAction } from '../../services/image-definition-form/image-definition-form-store-action-creators';
 
 @Component({
 	selector: 'app-image-layer-static-editor',
@@ -31,6 +29,8 @@ export class ImageLayerStaticEditorComponent {
 	@Input({ required: true }) canMoveEarlier!: boolean;
 	@Input({ required: true }) canMoveLater!: boolean;
 
+	private store = inject(ImageDefinitionFormStoreService);
+
 	get components(): FormGroup[] {
 		const result = (this.layerFormGroup.get('components') as FormArray)
 			.controls as FormGroup[];
@@ -47,5 +47,21 @@ export class ImageLayerStaticEditorComponent {
 
 	componentIsStatic(component: FormGroup): boolean {
 		return component.get('componentType')?.value === EComponentType.StaticAsset;
+	}
+
+	onLayerDeleteButton_click() {
+		this.store.dispatch(layerDeleteAction(this.layerFormGroup));
+	}
+
+	onLayerMoveEarlierButton_click() {
+		this.store.dispatch(layerMoveEarlierAction(this.layerFormGroup));
+	}
+
+	onLayerMoveLaterButton_click() {
+		this.store.dispatch(layerMoveLaterAction(this.layerFormGroup));
+	}
+
+	onNewComponent_click() {
+		this.store.dispatch(componentAddNewAction(this.layerFormGroup, EComponentType.StaticAsset));
 	}
 }
